@@ -49,14 +49,14 @@ namespace JiahaoToolbox.UI
 
             // Left Card: 效率管理 (faithful to mockup)
             RoundedCardPanel cardEco = new RoundedCardPanel();
-            cardEco.Location = new Point(26, 94);
-            cardEco.Size = new Size(292, 344);
+            cardEco.Location = new Point(26, 98);
+            cardEco.Size = new Size(302, 366);
             Controls.Add(cardEco);
 
             IconBadgeBox icoEco = new IconBadgeBox();
             icoEco.IconKind = NavIconKind.Leaf;
-            icoEco.Location = new Point(22, 22);
-            icoEco.Size = new Size(38, 38);
+            icoEco.Location = new Point(22, 24);
+            icoEco.Size = new Size(40, 40);
             cardEco.Controls.Add(icoEco);
 
             Label lblEcoTitle = new Label();
@@ -65,7 +65,7 @@ namespace JiahaoToolbox.UI
             lblEcoTitle.ForeColor = Theme.TextPrimary;
             lblEcoTitle.BackColor = Color.White;
             lblEcoTitle.AutoSize = true;
-            lblEcoTitle.Location = new Point(22, 74);
+            lblEcoTitle.Location = new Point(22, 78);
             cardEco.Controls.Add(lblEcoTitle);
 
             Label lblEcoSub = new Label();
@@ -74,45 +74,45 @@ namespace JiahaoToolbox.UI
             lblEcoSub.ForeColor = Theme.TextMuted;
             lblEcoSub.BackColor = Color.White;
             lblEcoSub.AutoSize = true;
-            lblEcoSub.Location = new Point(22, 100);
+            lblEcoSub.Location = new Point(22, 104);
             cardEco.Controls.Add(lblEcoSub);
 
             _rowWatcher = new KeyValueRow();
             _rowWatcher.LabelText = "自动监控";
-            _rowWatcher.Location = new Point(22, 136);
-            _rowWatcher.Size = new Size(248, 40);
+            _rowWatcher.Location = new Point(22, 144);
+            _rowWatcher.Size = new Size(258, 42);
             _rowWatcher.SetValue("检测中", StatusTone.Gray, true);
             cardEco.Controls.Add(_rowWatcher);
 
             _rowSelectedApps = new KeyValueRow();
             _rowSelectedApps.LabelText = "已选应用";
-            _rowSelectedApps.Location = new Point(22, 176);
-            _rowSelectedApps.Size = new Size(248, 40);
+            _rowSelectedApps.Location = new Point(22, 186);
+            _rowSelectedApps.Size = new Size(258, 42);
             _rowSelectedApps.SetValue("0 个", StatusTone.Gray, false);
             cardEco.Controls.Add(_rowSelectedApps);
 
             _rowFgExempt = new KeyValueRow();
             _rowFgExempt.LabelText = "前台自动豁免";
-            _rowFgExempt.Location = new Point(22, 216);
-            _rowFgExempt.Size = new Size(248, 40);
+            _rowFgExempt.Location = new Point(22, 228);
+            _rowFgExempt.Size = new Size(258, 42);
             _rowFgExempt.SetValue("开启", StatusTone.Gray, false);
             cardEco.Controls.Add(_rowFgExempt);
 
-            FluentButton btnManageEco = FluentFactory.Button("管理应用  →", 22, 282, 122, 38, FluentButtonStyle.PrimaryBlue);
+            FluentButton btnManageEco = FluentFactory.Button("管理应用  →", 22, 300, 126, 38, FluentButtonStyle.PrimaryBlue);
             btnManageEco.Font = new Font("Microsoft YaHei UI", 9.25F, FontStyle.Bold);
             btnManageEco.Click += delegate { if (NavigateToEco != null) NavigateToEco(); };
             cardEco.Controls.Add(btnManageEco);
 
             // Right Card: 防护与更新 (faithful to mockup)
             RoundedCardPanel cardGuard = new RoundedCardPanel();
-            cardGuard.Location = new Point(336, 94);
-            cardGuard.Size = new Size(292, 344);
+            cardGuard.Location = new Point(346, 98);
+            cardGuard.Size = new Size(302, 366);
             Controls.Add(cardGuard);
 
             IconBadgeBox icoGuard = new IconBadgeBox();
             icoGuard.IconKind = NavIconKind.Shield;
-            icoGuard.Location = new Point(22, 22);
-            icoGuard.Size = new Size(38, 38);
+            icoGuard.Location = new Point(22, 24);
+            icoGuard.Size = new Size(40, 40);
             cardGuard.Controls.Add(icoGuard);
 
             Label lblGuardTitle = new Label();
@@ -121,7 +121,7 @@ namespace JiahaoToolbox.UI
             lblGuardTitle.ForeColor = Theme.TextPrimary;
             lblGuardTitle.BackColor = Color.White;
             lblGuardTitle.AutoSize = true;
-            lblGuardTitle.Location = new Point(22, 74);
+            lblGuardTitle.Location = new Point(22, 78);
             cardGuard.Controls.Add(lblGuardTitle);
 
             Label lblGuardSub = new Label();
@@ -130,31 +130,31 @@ namespace JiahaoToolbox.UI
             lblGuardSub.ForeColor = Theme.TextMuted;
             lblGuardSub.BackColor = Color.White;
             lblGuardSub.AutoSize = true;
-            lblGuardSub.Location = new Point(22, 100);
+            lblGuardSub.Location = new Point(22, 104);
             cardGuard.Controls.Add(lblGuardSub);
 
             _rowDefender = new KeyValueRow();
             _rowDefender.LabelText = "Microsoft Defender";
-            _rowDefender.Location = new Point(22, 136);
-            _rowDefender.Size = new Size(248, 40);
+            _rowDefender.Location = new Point(22, 144);
+            _rowDefender.Size = new Size(258, 42);
             _rowDefender.SetValue("检测中", StatusTone.Gray, true);
             cardGuard.Controls.Add(_rowDefender);
 
             _rowWindowsUpdate = new KeyValueRow();
             _rowWindowsUpdate.LabelText = "Windows 更新";
-            _rowWindowsUpdate.Location = new Point(22, 176);
-            _rowWindowsUpdate.Size = new Size(248, 40);
+            _rowWindowsUpdate.Location = new Point(22, 186);
+            _rowWindowsUpdate.Size = new Size(258, 42);
             _rowWindowsUpdate.SetValue("检测中", StatusTone.Gray, true);
             cardGuard.Controls.Add(_rowWindowsUpdate);
 
             _rowSac = new KeyValueRow();
             _rowSac.LabelText = "智能应用控制";
-            _rowSac.Location = new Point(22, 216);
-            _rowSac.Size = new Size(248, 40);
+            _rowSac.Location = new Point(22, 228);
+            _rowSac.Size = new Size(258, 42);
             _rowSac.SetValue("检测中", StatusTone.Gray, false);
             cardGuard.Controls.Add(_rowSac);
 
-            FluentButton btnViewGuard = FluentFactory.Button("查看状态  →", 22, 282, 122, 38, FluentButtonStyle.Outline);
+            FluentButton btnViewGuard = FluentFactory.Button("查看状态  →", 22, 300, 126, 38, FluentButtonStyle.Outline);
             btnViewGuard.Font = new Font("Microsoft YaHei UI", 9.25F, FontStyle.Regular);
             btnViewGuard.Click += delegate { if (NavigateToGuard != null) NavigateToGuard(); };
             cardGuard.Controls.Add(btnViewGuard);
@@ -162,8 +162,8 @@ namespace JiahaoToolbox.UI
             // Subtle compact status strip at bottom
             RoundedCardPanel footerCard = new RoundedCardPanel();
             footerCard.CornerRadius = 10;
-            footerCard.Location = new Point(26, 456);
-            footerCard.Size = new Size(602, 48);
+            footerCard.Location = new Point(26, 488);
+            footerCard.Size = new Size(622, 52);
             Controls.Add(footerCard);
 
             _lblFooterTip = new Label();
@@ -171,11 +171,11 @@ namespace JiahaoToolbox.UI
             _lblFooterTip.Font = Theme.FontSmall();
             _lblFooterTip.ForeColor = Theme.TextSecondary;
             _lblFooterTip.BackColor = Color.White;
-            _lblFooterTip.Location = new Point(16, 15);
-            _lblFooterTip.Size = new Size(468, 18);
+            _lblFooterTip.Location = new Point(18, 17);
+            _lblFooterTip.Size = new Size(484, 18);
             footerCard.Controls.Add(_lblFooterTip);
 
-            FluentButton btnQuickRefresh = FluentFactory.Button("刷新状态", 494, 10, 92, 28, FluentButtonStyle.Outline);
+            FluentButton btnQuickRefresh = FluentFactory.Button("刷新状态", 514, 12, 92, 28, FluentButtonStyle.Outline);
             btnQuickRefresh.Font = Theme.FontSmall();
             btnQuickRefresh.Click += delegate { if (RequestRefreshAll != null) RequestRefreshAll(); };
             footerCard.Controls.Add(btnQuickRefresh);

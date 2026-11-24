@@ -64,13 +64,13 @@ namespace JiahaoToolbox.UI
             Controls.Add(lblSub);
 
             _pillWatcher = new StatusPill();
-            _pillWatcher.Location = new Point(372, 23);
+            _pillWatcher.Location = new Point(392, 23);
             _pillWatcher.Size = new Size(122, 26);
             _pillWatcher.Tone = StatusTone.Gray;
             _pillWatcher.PillText = "监控已停止";
             Controls.Add(_pillWatcher);
 
-            _btnToggleWatcher = FluentFactory.Button("开启自动监控", 502, 20, 126, 32, FluentButtonStyle.PrimaryBlue);
+            _btnToggleWatcher = FluentFactory.Button("开启自动监控", 522, 20, 126, 32, FluentButtonStyle.PrimaryBlue);
             _btnToggleWatcher.Font = Theme.FontBodyBold();
             _btnToggleWatcher.Click += delegate
             {
@@ -82,7 +82,7 @@ namespace JiahaoToolbox.UI
             RoundedCardPanel barCard = new RoundedCardPanel();
             barCard.CornerRadius = 10;
             barCard.Location = new Point(26, 78);
-            barCard.Size = new Size(602, 46);
+            barCard.Size = new Size(622, 46);
             Controls.Add(barCard);
 
             FluentButton btnAddRunning = FluentFactory.Button("+ 运行中应用", 10, 9, 108, 28, FluentButtonStyle.PrimaryBlue);
@@ -105,7 +105,7 @@ namespace JiahaoToolbox.UI
             btnRemove.Click += OnRemoveAppClick;
             barCard.Controls.Add(btnRemove);
 
-            FluentButton btnApplyOnce = FluentFactory.Button("立即生效", 426, 9, 80, 28, FluentButtonStyle.SoftSuccess);
+            FluentButton btnApplyOnce = FluentFactory.Button("立即生效", 446, 9, 80, 28, FluentButtonStyle.SoftSuccess);
             btnApplyOnce.Font = Theme.FontSmall();
             btnApplyOnce.Click += delegate
             {
@@ -113,7 +113,7 @@ namespace JiahaoToolbox.UI
             };
             barCard.Controls.Add(btnApplyOnce);
 
-            FluentButton btnRestoreAll = FluentFactory.Button("精准还原", 512, 9, 80, 28, FluentButtonStyle.SoftWarning);
+            FluentButton btnRestoreAll = FluentFactory.Button("精准还原", 532, 9, 80, 28, FluentButtonStyle.SoftWarning);
             btnRestoreAll.Font = Theme.FontSmall();
             btnRestoreAll.Click += OnRestoreAllClick;
             barCard.Controls.Add(btnRestoreAll);
@@ -126,12 +126,12 @@ namespace JiahaoToolbox.UI
             RoundedCardPanel listCard = new RoundedCardPanel();
             listCard.CornerRadius = 12;
             listCard.Location = new Point(26, 134);
-            listCard.Size = new Size(602, 244);
+            listCard.Size = new Size(622, 314);
             Controls.Add(listCard);
 
             _lvApps = new ListView();
             _lvApps.Location = new Point(12, 12);
-            _lvApps.Size = new Size(578, 220);
+            _lvApps.Size = new Size(598, 290);
             _lvApps.View = View.Details;
             _lvApps.FullRowSelect = true;
             _lvApps.CheckBoxes = true;
@@ -139,11 +139,11 @@ namespace JiahaoToolbox.UI
             _lvApps.BorderStyle = BorderStyle.FixedSingle;
             _lvApps.BackColor = Color.White;
             _lvApps.Font = Theme.FontSmall();
-            _lvApps.Columns.Add("应用名称", 122);
-            _lvApps.Columns.Add("主程序", 126);
+            _lvApps.Columns.Add("应用名称", 126);
+            _lvApps.Columns.Add("主程序", 132);
             _lvApps.Columns.Add("效率 / 运行", 82);
-            _lvApps.Columns.Add("内存占用", 68);
-            _lvApps.Columns.Add("实时状态", 164);
+            _lvApps.Columns.Add("内存占用", 72);
+            _lvApps.Columns.Add("实时状态", 166);
             _lvApps.ItemChecked += OnAppItemChecked;
             _lvApps.HandleCreated += OnListViewHandleCreated;
             _lvApps.DoubleClick += OnViewProcessesClick;
@@ -152,8 +152,8 @@ namespace JiahaoToolbox.UI
             // Bottom quick strategy + log card
             RoundedCardPanel bottomCard = new RoundedCardPanel();
             bottomCard.CornerRadius = 12;
-            bottomCard.Location = new Point(26, 388);
-            bottomCard.Size = new Size(602, 126);
+            bottomCard.Location = new Point(26, 458);
+            bottomCard.Size = new Size(622, 124);
             Controls.Add(bottomCard);
 
             _chkFgExempt = new CheckBox();
@@ -191,7 +191,7 @@ namespace JiahaoToolbox.UI
             lblDblHint.ForeColor = Theme.TextMuted;
             lblDblHint.Font = new Font("Microsoft YaHei UI", 8F);
             lblDblHint.TextAlign = ContentAlignment.MiddleRight;
-            lblDblHint.Location = new Point(368, 11);
+            lblDblHint.Location = new Point(388, 11);
             lblDblHint.Size = new Size(220, 18);
             bottomCard.Controls.Add(lblDblHint);
 
@@ -205,7 +205,7 @@ namespace JiahaoToolbox.UI
             _txtLog.ForeColor = Theme.TextPrimary;
             _txtLog.Font = Theme.FontMono();
             _txtLog.Location = new Point(14, 38);
-            _txtLog.Size = new Size(574, 76);
+            _txtLog.Size = new Size(594, 74);
             bottomCard.Controls.Add(_txtLog);
         }
 

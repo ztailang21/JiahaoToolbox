@@ -69,7 +69,7 @@ namespace JiahaoToolbox.UI
             lblTitle.Font = Theme.FontPageTitle();
             lblTitle.ForeColor = Theme.TextPrimary;
             lblTitle.AutoSize = true;
-            lblTitle.Location = new Point(26, 18);
+            lblTitle.Location = new Point(26, 12);
             Controls.Add(lblTitle);
 
             Label lblSub = new Label();
@@ -77,29 +77,31 @@ namespace JiahaoToolbox.UI
             lblSub.Font = Theme.FontPageSub();
             lblSub.ForeColor = Theme.TextMuted;
             lblSub.AutoSize = true;
-            lblSub.Location = new Point(28, 50);
+            lblSub.Location = new Point(28, 43);
             Controls.Add(lblSub);
 
-            FluentButton btnRefresh = FluentFactory.Button("刷新状态", 418, 20, 90, 32, FluentButtonStyle.Outline);
+            FluentButton btnRefresh = FluentFactory.Button("刷新状态", 438, 15, 90, 30, FluentButtonStyle.Outline);
             btnRefresh.Font = Theme.FontSmall();
             btnRefresh.Click += async delegate { await RefreshStatusesAsync(true); };
             Controls.Add(btnRefresh);
 
-            FluentButton btnRestoreDefault = FluentFactory.Button("一键恢复默认", 516, 20, 112, 32, FluentButtonStyle.SoftBlue);
+            FluentButton btnRestoreDefault = FluentFactory.Button("一键恢复默认", 536, 15, 112, 30, FluentButtonStyle.SoftBlue);
             btnRestoreDefault.Font = Theme.FontSmall();
             btnRestoreDefault.Click += async delegate { await HandleRestoreAllAsync(); };
             Controls.Add(btnRestoreDefault);
             RegisterAction(btnRefresh, btnRestoreDefault);
 
             _scrollHost = new Panel();
-            _scrollHost.Location = new Point(0, 74);
-            _scrollHost.Size = new Size(654, 454);
+            _scrollHost.Location = new Point(0, 66);
+            _scrollHost.Size = new Size(674, 532);
             _scrollHost.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             _scrollHost.BackColor = Theme.ContentBg;
             _scrollHost.AutoScroll = true;
             Controls.Add(_scrollHost);
 
-            int y = 4;
+            int cardW = 622;
+            int innerW = cardW - 32; // 590
+            int y = 2;
             bool isAdmin = ElevationHelper.IsAdministrator();
             if (!isAdmin)
             {
@@ -108,7 +110,7 @@ namespace JiahaoToolbox.UI
                 _elevBanner.CardFill = Theme.AmberBg;
                 _elevBanner.BorderColor = Theme.AmberBorder;
                 _elevBanner.Location = new Point(26, y);
-                _elevBanner.Size = new Size(588, 42);
+                _elevBanner.Size = new Size(cardW, 38);
                 _scrollHost.Controls.Add(_elevBanner);
 
                 Label lblWarn = new Label();
@@ -117,21 +119,21 @@ namespace JiahaoToolbox.UI
                 lblWarn.ForeColor = Theme.AmberText;
                 lblWarn.BackColor = Theme.AmberBg;
                 lblWarn.AutoSize = true;
-                lblWarn.Location = new Point(14, 13);
+                lblWarn.Location = new Point(14, 11);
                 _elevBanner.Controls.Add(lblWarn);
 
-                FluentButton btnElev = FluentFactory.Button("以管理员身份重启", 434, 7, 142, 28, FluentButtonStyle.PrimaryBlue);
+                FluentButton btnElev = FluentFactory.Button("以管理员身份重启", cardW - 154, 6, 142, 26, FluentButtonStyle.PrimaryBlue);
                 btnElev.Font = new Font("Microsoft YaHei UI", 8.25F, FontStyle.Bold);
                 btnElev.Click += delegate { if (RequestElevateToGuard != null) RequestElevateToGuard(); };
                 _elevBanner.Controls.Add(btnElev);
 
-                y += 52;
+                y += 46;
             }
 
             // Card 1: Microsoft Defender
             RoundedCardPanel cardDef = new RoundedCardPanel();
             cardDef.Location = new Point(26, y);
-            cardDef.Size = new Size(588, 106);
+            cardDef.Size = new Size(cardW, 96);
             _scrollHost.Controls.Add(cardDef);
 
             Label lblDefTitle = new Label();
@@ -140,7 +142,7 @@ namespace JiahaoToolbox.UI
             lblDefTitle.ForeColor = Theme.TextPrimary;
             lblDefTitle.BackColor = Color.White;
             lblDefTitle.AutoSize = true;
-            lblDefTitle.Location = new Point(16, 11);
+            lblDefTitle.Location = new Point(16, 9);
             cardDef.Controls.Add(lblDefTitle);
 
             _lblTamperBadge = new Label();
@@ -149,43 +151,43 @@ namespace JiahaoToolbox.UI
             _lblTamperBadge.ForeColor = Theme.TextMuted;
             _lblTamperBadge.BackColor = Color.White;
             _lblTamperBadge.TextAlign = ContentAlignment.MiddleRight;
-            _lblTamperBadge.Location = new Point(374, 11);
+            _lblTamperBadge.Location = new Point(cardW - 214, 9);
             _lblTamperBadge.Size = new Size(198, 18);
             cardDef.Controls.Add(_lblTamperBadge);
 
             _defPill = new StatusPill();
-            _defPill.Location = new Point(16, 34);
-            _defPill.Size = new Size(556, 26);
+            _defPill.Location = new Point(16, 30);
+            _defPill.Size = new Size(innerW, 24);
             _defPill.PillText = "正在检测 Defender 状态...";
             cardDef.Controls.Add(_defPill);
 
-            _btnDisableDef = FluentFactory.Button("停用 Defender", 16, 68, 118, 28, FluentButtonStyle.SoftDanger);
+            _btnDisableDef = FluentFactory.Button("停用 Defender", 16, 60, 118, 27, FluentButtonStyle.SoftDanger);
             _btnDisableDef.Font = Theme.FontSmall();
             _btnDisableDef.Click += async delegate { await HandleDisableDefenderAsync(); };
             cardDef.Controls.Add(_btnDisableDef);
 
-            _btnEnableDef = FluentFactory.Button("启用 Defender", 142, 68, 118, 28, FluentButtonStyle.SoftSuccess);
+            _btnEnableDef = FluentFactory.Button("启用 Defender", 142, 60, 118, 27, FluentButtonStyle.SoftSuccess);
             _btnEnableDef.Font = Theme.FontSmall();
             _btnEnableDef.Click += async delegate { await HandleEnableDefenderAsync(); };
             cardDef.Controls.Add(_btnEnableDef);
 
-            FluentButton btnSecCenter = FluentFactory.Button("安全中心", 378, 68, 90, 28, FluentButtonStyle.Outline);
+            FluentButton btnSecCenter = FluentFactory.Button("安全中心", cardW - 210, 60, 90, 27, FluentButtonStyle.Outline);
             btnSecCenter.Font = Theme.FontSmall();
             btnSecCenter.Click += delegate { DefenderManager.OpenSecurityCenter(); };
             cardDef.Controls.Add(btnSecCenter);
 
-            _btnAddExcl = FluentFactory.Button("加入排除项", 476, 68, 96, 28, FluentButtonStyle.Outline);
+            _btnAddExcl = FluentFactory.Button("加入排除项", cardW - 112, 60, 96, 27, FluentButtonStyle.Outline);
             _btnAddExcl.Font = Theme.FontSmall();
             _btnAddExcl.Click += async delegate { await HandleAddExclusionAsync(); };
             cardDef.Controls.Add(_btnAddExcl);
             RegisterAction(_btnDisableDef, _btnEnableDef, _btnAddExcl);
 
-            y += 116;
+            y += 104;
 
             // Card 2: Windows Update
             RoundedCardPanel cardWu = new RoundedCardPanel();
             cardWu.Location = new Point(26, y);
-            cardWu.Size = new Size(588, 178);
+            cardWu.Size = new Size(cardW, 170);
             _scrollHost.Controls.Add(cardWu);
 
             Label lblWuTitle = new Label();
@@ -194,7 +196,7 @@ namespace JiahaoToolbox.UI
             lblWuTitle.ForeColor = Theme.TextPrimary;
             lblWuTitle.BackColor = Color.White;
             lblWuTitle.AutoSize = true;
-            lblWuTitle.Location = new Point(16, 11);
+            lblWuTitle.Location = new Point(16, 9);
             cardWu.Controls.Add(lblWuTitle);
 
             _lblStoreBadge = new Label();
@@ -203,27 +205,27 @@ namespace JiahaoToolbox.UI
             _lblStoreBadge.ForeColor = Theme.TextMuted;
             _lblStoreBadge.BackColor = Color.White;
             _lblStoreBadge.TextAlign = ContentAlignment.MiddleRight;
-            _lblStoreBadge.Location = new Point(366, 11);
+            _lblStoreBadge.Location = new Point(cardW - 222, 9);
             _lblStoreBadge.Size = new Size(206, 18);
             cardWu.Controls.Add(_lblStoreBadge);
 
             _wuPill = new StatusPill();
-            _wuPill.Location = new Point(16, 34);
-            _wuPill.Size = new Size(556, 26);
+            _wuPill.Location = new Point(16, 30);
+            _wuPill.Size = new Size(innerW, 24);
             _wuPill.PillText = "正在检测 Windows 更新状态...";
             cardWu.Controls.Add(_wuPill);
 
-            _btnDisableWu = FluentFactory.Button("禁用更新", 16, 68, 108, 28, FluentButtonStyle.SoftDanger);
+            _btnDisableWu = FluentFactory.Button("禁用更新", 16, 60, 108, 27, FluentButtonStyle.SoftDanger);
             _btnDisableWu.Font = Theme.FontSmall();
             _btnDisableWu.Click += async delegate { await HandleDisableWuAsync(); };
             cardWu.Controls.Add(_btnDisableWu);
 
-            _btnEnableWu = FluentFactory.Button("启用更新", 132, 68, 108, 28, FluentButtonStyle.SoftSuccess);
+            _btnEnableWu = FluentFactory.Button("启用更新", 132, 60, 108, 27, FluentButtonStyle.SoftSuccess);
             _btnEnableWu.Font = Theme.FontSmall();
             _btnEnableWu.Click += async delegate { await HandleEnableWuAsync(); };
             cardWu.Controls.Add(_btnEnableWu);
 
-            _btnRepairWu = FluentFactory.Button("修复更新服务", 248, 68, 114, 28, FluentButtonStyle.SoftBlue);
+            _btnRepairWu = FluentFactory.Button("修复更新服务", 248, 60, 114, 27, FluentButtonStyle.SoftBlue);
             _btnRepairWu.Font = Theme.FontSmall();
             _btnRepairWu.Click += async delegate { await HandleRepairWuAsync(); };
             cardWu.Controls.Add(_btnRepairWu);
@@ -234,7 +236,7 @@ namespace JiahaoToolbox.UI
             _chkProtectServices.BackColor = Color.White;
             _chkProtectServices.ForeColor = Theme.TextPrimary;
             _chkProtectServices.Font = Theme.FontSmall();
-            _chkProtectServices.Location = new Point(18, 102);
+            _chkProtectServices.Location = new Point(18, 93);
             _chkProtectServices.CheckedChanged += OnOptionChanged;
             cardWu.Controls.Add(_chkProtectServices);
 
@@ -244,7 +246,7 @@ namespace JiahaoToolbox.UI
             _chkHideTrayIcon.BackColor = Color.White;
             _chkHideTrayIcon.ForeColor = Theme.TextPrimary;
             _chkHideTrayIcon.Font = Theme.FontSmall();
-            _chkHideTrayIcon.Location = new Point(328, 102);
+            _chkHideTrayIcon.Location = new Point(348, 93);
             _chkHideTrayIcon.CheckedChanged += OnOptionChanged;
             cardWu.Controls.Add(_chkHideTrayIcon);
 
@@ -254,38 +256,40 @@ namespace JiahaoToolbox.UI
             _chkDisableStore.BackColor = Color.White;
             _chkDisableStore.ForeColor = Theme.TextSecondary;
             _chkDisableStore.Font = Theme.FontSmall();
-            _chkDisableStore.Location = new Point(18, 123);
+            _chkDisableStore.Location = new Point(18, 114);
             _chkDisableStore.CheckedChanged += OnStoreOptionChanged;
             cardWu.Controls.Add(_chkDisableStore);
 
-            FluentButton btnWuSettings = FluentFactory.Button("更新设置", 16, 146, 132, 24, FluentButtonStyle.Outline);
+            int qBtnW = 140;
+            int qGap = 10;
+            FluentButton btnWuSettings = FluentFactory.Button("更新设置", 16, 138, qBtnW, 24, FluentButtonStyle.Outline);
             btnWuSettings.Font = new Font("Microsoft YaHei UI", 8F);
             btnWuSettings.Click += delegate { WindowsUpdateManager.OpenUpdateSettings(); };
             cardWu.Controls.Add(btnWuSettings);
 
-            FluentButton btnServices = FluentFactory.Button("系统服务", 157, 146, 132, 24, FluentButtonStyle.Outline);
+            FluentButton btnServices = FluentFactory.Button("系统服务", 16 + (qBtnW + qGap) * 1, 138, qBtnW, 24, FluentButtonStyle.Outline);
             btnServices.Font = new Font("Microsoft YaHei UI", 8F);
             btnServices.Click += delegate { WindowsUpdateManager.OpenServicesConsole(); };
             cardWu.Controls.Add(btnServices);
 
-            FluentButton btnTasks = FluentFactory.Button("计划任务", 298, 146, 132, 24, FluentButtonStyle.Outline);
+            FluentButton btnTasks = FluentFactory.Button("计划任务", 16 + (qBtnW + qGap) * 2, 138, qBtnW, 24, FluentButtonStyle.Outline);
             btnTasks.Font = new Font("Microsoft YaHei UI", 8F);
             btnTasks.Click += delegate { WindowsUpdateManager.OpenTaskScheduler(); };
             cardWu.Controls.Add(btnTasks);
 
-            FluentButton btnTrouble = FluentFactory.Button("疑难解答", 440, 146, 132, 24, FluentButtonStyle.Outline);
+            FluentButton btnTrouble = FluentFactory.Button("疑难解答", 16 + (qBtnW + qGap) * 3, 138, qBtnW, 24, FluentButtonStyle.Outline);
             btnTrouble.Font = new Font("Microsoft YaHei UI", 8F);
             btnTrouble.Click += delegate { WindowsUpdateManager.OpenTroubleshooter(); };
             cardWu.Controls.Add(btnTrouble);
 
             RegisterAction(_btnDisableWu, _btnEnableWu, _btnRepairWu, _chkProtectServices, _chkHideTrayIcon, _chkDisableStore);
 
-            y += 188;
+            y += 178;
 
             // Card 3: Smart App Control
             RoundedCardPanel cardSac = new RoundedCardPanel();
             cardSac.Location = new Point(26, y);
-            cardSac.Size = new Size(588, 120);
+            cardSac.Size = new Size(cardW, 112);
             _scrollHost.Controls.Add(cardSac);
 
             Label lblSacTitle = new Label();
@@ -294,26 +298,26 @@ namespace JiahaoToolbox.UI
             lblSacTitle.ForeColor = Theme.TextPrimary;
             lblSacTitle.BackColor = Color.White;
             lblSacTitle.AutoSize = true;
-            lblSacTitle.Location = new Point(16, 11);
+            lblSacTitle.Location = new Point(16, 9);
             cardSac.Controls.Add(lblSacTitle);
 
             _sacPill = new StatusPill();
-            _sacPill.Location = new Point(16, 34);
-            _sacPill.Size = new Size(556, 26);
+            _sacPill.Location = new Point(16, 30);
+            _sacPill.Size = new Size(innerW, 24);
             _sacPill.PillText = "正在检测智能应用控制...";
             cardSac.Controls.Add(_sacPill);
 
-            _btnDisableSac = FluentFactory.Button("关闭智能应用控制", 16, 68, 142, 28, FluentButtonStyle.SoftDanger);
+            _btnDisableSac = FluentFactory.Button("关闭智能应用控制", 16, 60, 142, 27, FluentButtonStyle.SoftDanger);
             _btnDisableSac.Font = Theme.FontSmall();
             _btnDisableSac.Click += async delegate { await HandleSetSacAsync(0); };
             cardSac.Controls.Add(_btnDisableSac);
 
-            _btnEvalSac = FluentFactory.Button("设为评估模式", 166, 68, 114, 28, FluentButtonStyle.SoftWarning);
+            _btnEvalSac = FluentFactory.Button("设为评估模式", 166, 60, 114, 27, FluentButtonStyle.SoftWarning);
             _btnEvalSac.Font = Theme.FontSmall();
             _btnEvalSac.Click += async delegate { await HandleSetSacAsync(2); };
             cardSac.Controls.Add(_btnEvalSac);
 
-            FluentButton btnSacSettings = FluentFactory.Button("打开系统设置", 458, 68, 114, 28, FluentButtonStyle.Outline);
+            FluentButton btnSacSettings = FluentFactory.Button("打开系统设置", cardW - 130, 60, 114, 27, FluentButtonStyle.Outline);
             btnSacSettings.Font = Theme.FontSmall();
             btnSacSettings.Click += delegate { SmartAppControlManager.OpenSmartAppSettings(); };
             cardSac.Controls.Add(btnSacSettings);
@@ -324,17 +328,18 @@ namespace JiahaoToolbox.UI
             lblSacHint.ForeColor = Theme.TextMuted;
             lblSacHint.BackColor = Color.White;
             lblSacHint.AutoSize = true;
-            lblSacHint.Location = new Point(16, 100);
+            lblSacHint.Location = new Point(16, 91);
             cardSac.Controls.Add(lblSacHint);
 
             RegisterAction(_btnDisableSac, _btnEvalSac);
 
-            y += 130;
+            y += 120;
 
-            // Card 4: Operation Log
+            // Card 4: Operation Log (fits completely on-screen!)
+            int logCardH = isAdmin ? 112 : 74;
             RoundedCardPanel cardLog = new RoundedCardPanel();
             cardLog.Location = new Point(26, y);
-            cardLog.Size = new Size(588, 104);
+            cardLog.Size = new Size(cardW, logCardH);
             _scrollHost.Controls.Add(cardLog);
 
             Label lblLogTitle = new Label();
@@ -343,10 +348,10 @@ namespace JiahaoToolbox.UI
             lblLogTitle.ForeColor = Theme.TextSecondary;
             lblLogTitle.BackColor = Color.White;
             lblLogTitle.AutoSize = true;
-            lblLogTitle.Location = new Point(16, 8);
+            lblLogTitle.Location = new Point(16, 7);
             cardLog.Controls.Add(lblLogTitle);
 
-            FluentButton btnCopyLog = FluentFactory.Button("复制", 472, 5, 48, 20, FluentButtonStyle.Outline);
+            FluentButton btnCopyLog = FluentFactory.Button("复制", cardW - 116, 4, 48, 20, FluentButtonStyle.Outline);
             btnCopyLog.CornerRadius = 5;
             btnCopyLog.Font = new Font("Microsoft YaHei UI", 7.75F);
             btnCopyLog.Click += delegate
@@ -359,7 +364,7 @@ namespace JiahaoToolbox.UI
             };
             cardLog.Controls.Add(btnCopyLog);
 
-            FluentButton btnClearLog = FluentFactory.Button("清空", 524, 5, 48, 20, FluentButtonStyle.Outline);
+            FluentButton btnClearLog = FluentFactory.Button("清空", cardW - 64, 4, 48, 20, FluentButtonStyle.Outline);
             btnClearLog.CornerRadius = 5;
             btnClearLog.Font = new Font("Microsoft YaHei UI", 7.75F);
             btnClearLog.Click += delegate { _txtLog.Clear(); };
@@ -374,16 +379,9 @@ namespace JiahaoToolbox.UI
             _txtLog.BackColor = Color.FromArgb(248, 250, 252);
             _txtLog.ForeColor = Theme.TextPrimary;
             _txtLog.Font = Theme.FontMono();
-            _txtLog.Location = new Point(16, 30);
-            _txtLog.Size = new Size(556, 64);
+            _txtLog.Location = new Point(16, 27);
+            _txtLog.Size = new Size(innerW, logCardH - 35);
             cardLog.Controls.Add(_txtLog);
-
-            // Bottom breathing padding inside scroll host
-            Panel spacer = new Panel();
-            spacer.Location = new Point(0, y + 108);
-            spacer.Size = new Size(10, 12);
-            spacer.BackColor = Theme.ContentBg;
-            _scrollHost.Controls.Add(spacer);
         }
 
         private void RegisterAction(params Control[] controls)

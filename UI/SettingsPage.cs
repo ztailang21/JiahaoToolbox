@@ -56,8 +56,8 @@ namespace JiahaoToolbox.UI
 
             // Card 1: Startup & Tray
             RoundedCardPanel cardStart = new RoundedCardPanel();
-            cardStart.Location = new Point(26, 84);
-            cardStart.Size = new Size(602, 122);
+            cardStart.Location = new Point(26, 86);
+            cardStart.Size = new Size(622, 132);
             Controls.Add(cardStart);
 
             Label lblC1 = new Label();
@@ -66,7 +66,7 @@ namespace JiahaoToolbox.UI
             lblC1.ForeColor = Theme.TextPrimary;
             lblC1.BackColor = Color.White;
             lblC1.AutoSize = true;
-            lblC1.Location = new Point(18, 12);
+            lblC1.Location = new Point(18, 14);
             cardStart.Controls.Add(lblC1);
 
             _chkAutostart = new CheckBox();
@@ -75,7 +75,7 @@ namespace JiahaoToolbox.UI
             _chkAutostart.BackColor = Color.White;
             _chkAutostart.ForeColor = Theme.TextPrimary;
             _chkAutostart.Font = Theme.FontSmall();
-            _chkAutostart.Location = new Point(18, 40);
+            _chkAutostart.Location = new Point(18, 44);
             _chkAutostart.CheckedChanged += OnAutostartChanged;
             cardStart.Controls.Add(_chkAutostart);
 
@@ -85,7 +85,7 @@ namespace JiahaoToolbox.UI
             _chkMinToTray.BackColor = Color.White;
             _chkMinToTray.ForeColor = Theme.TextPrimary;
             _chkMinToTray.Font = Theme.FontSmall();
-            _chkMinToTray.Location = new Point(18, 66);
+            _chkMinToTray.Location = new Point(18, 72);
             _chkMinToTray.CheckedChanged += OnSettingModified;
             cardStart.Controls.Add(_chkMinToTray);
 
@@ -95,14 +95,14 @@ namespace JiahaoToolbox.UI
             _chkAutoStartWatcher.BackColor = Color.White;
             _chkAutoStartWatcher.ForeColor = Theme.TextPrimary;
             _chkAutoStartWatcher.Font = Theme.FontSmall();
-            _chkAutoStartWatcher.Location = new Point(18, 92);
+            _chkAutoStartWatcher.Location = new Point(18, 100);
             _chkAutoStartWatcher.CheckedChanged += OnSettingModified;
             cardStart.Controls.Add(_chkAutoStartWatcher);
 
             // Card 2: Eco Engine Strategy
             RoundedCardPanel cardEco = new RoundedCardPanel();
-            cardEco.Location = new Point(26, 216);
-            cardEco.Size = new Size(602, 134);
+            cardEco.Location = new Point(26, 232);
+            cardEco.Size = new Size(622, 144);
             Controls.Add(cardEco);
 
             Label lblC2 = new Label();
@@ -111,7 +111,7 @@ namespace JiahaoToolbox.UI
             lblC2.ForeColor = Theme.TextPrimary;
             lblC2.BackColor = Color.White;
             lblC2.AutoSize = true;
-            lblC2.Location = new Point(18, 12);
+            lblC2.Location = new Point(18, 14);
             cardEco.Controls.Add(lblC2);
 
             Label lblPrio = new Label();
@@ -120,14 +120,14 @@ namespace JiahaoToolbox.UI
             lblPrio.BackColor = Color.White;
             lblPrio.ForeColor = Theme.TextSecondary;
             lblPrio.Font = Theme.FontSmall();
-            lblPrio.Location = new Point(18, 42);
+            lblPrio.Location = new Point(18, 46);
             cardEco.Controls.Add(lblPrio);
 
             _cmbPriority = new ComboBox();
             _cmbPriority.DropDownStyle = ComboBoxStyle.DropDownList;
             _cmbPriority.Font = Theme.FontSmall();
-            _cmbPriority.Location = new Point(122, 38);
-            _cmbPriority.Size = new Size(200, 24);
+            _cmbPriority.Location = new Point(122, 42);
+            _cmbPriority.Size = new Size(204, 24);
             _cmbPriority.Items.Add("低 (Idle · 任务管理器绿叶)");
             _cmbPriority.Items.Add("低于正常 (Below Normal)");
             _cmbPriority.SelectedIndexChanged += OnSettingModified;
@@ -139,15 +139,15 @@ namespace JiahaoToolbox.UI
             lblPoll.BackColor = Color.White;
             lblPoll.ForeColor = Theme.TextSecondary;
             lblPoll.Font = Theme.FontSmall();
-            lblPoll.Location = new Point(352, 42);
+            lblPoll.Location = new Point(358, 46);
             cardEco.Controls.Add(lblPoll);
 
             _numPollSeconds = new NumericUpDown();
             _numPollSeconds.Minimum = 2;
             _numPollSeconds.Maximum = 30;
             _numPollSeconds.Font = Theme.FontSmall();
-            _numPollSeconds.Location = new Point(468, 38);
-            _numPollSeconds.Size = new Size(64, 22);
+            _numPollSeconds.Location = new Point(474, 42);
+            _numPollSeconds.Size = new Size(66, 22);
             _numPollSeconds.ValueChanged += OnSettingModified;
             cardEco.Controls.Add(_numPollSeconds);
 
@@ -157,7 +157,7 @@ namespace JiahaoToolbox.UI
             _chkFgExempt.BackColor = Color.White;
             _chkFgExempt.ForeColor = Theme.TextPrimary;
             _chkFgExempt.Font = Theme.FontSmall();
-            _chkFgExempt.Location = new Point(18, 72);
+            _chkFgExempt.Location = new Point(18, 78);
             _chkFgExempt.CheckedChanged += OnSettingModified;
             cardEco.Controls.Add(_chkFgExempt);
 
@@ -167,14 +167,14 @@ namespace JiahaoToolbox.UI
             _chkIdleTrim.BackColor = Color.White;
             _chkIdleTrim.ForeColor = Theme.TextSecondary;
             _chkIdleTrim.Font = Theme.FontSmall();
-            _chkIdleTrim.Location = new Point(18, 98);
+            _chkIdleTrim.Location = new Point(18, 106);
             _chkIdleTrim.CheckedChanged += OnSettingModified;
             cardEco.Controls.Add(_chkIdleTrim);
 
             // Card 3: Config, Migration, Permission & About
             RoundedCardPanel cardMeta = new RoundedCardPanel();
-            cardMeta.Location = new Point(26, 360);
-            cardMeta.Size = new Size(602, 152);
+            cardMeta.Location = new Point(26, 390);
+            cardMeta.Size = new Size(622, 162);
             Controls.Add(cardMeta);
 
             Label lblC3 = new Label();
@@ -183,7 +183,7 @@ namespace JiahaoToolbox.UI
             lblC3.ForeColor = Theme.TextPrimary;
             lblC3.BackColor = Color.White;
             lblC3.AutoSize = true;
-            lblC3.Location = new Point(18, 12);
+            lblC3.Location = new Point(18, 14);
             cardMeta.Controls.Add(lblC3);
 
             Label lblCfgPath = new Label();
@@ -191,11 +191,11 @@ namespace JiahaoToolbox.UI
             lblCfgPath.Font = new Font("Microsoft YaHei UI", 8F);
             lblCfgPath.ForeColor = Theme.TextMuted;
             lblCfgPath.BackColor = Color.White;
-            lblCfgPath.Location = new Point(18, 38);
-            lblCfgPath.Size = new Size(566, 18);
+            lblCfgPath.Location = new Point(18, 42);
+            lblCfgPath.Size = new Size(586, 18);
             cardMeta.Controls.Add(lblCfgPath);
 
-            FluentButton btnOpenDir = FluentFactory.Button("打开配置目录", 18, 64, 114, 30, FluentButtonStyle.Outline);
+            FluentButton btnOpenDir = FluentFactory.Button("打开配置目录", 18, 70, 114, 30, FluentButtonStyle.Outline);
             btnOpenDir.Font = Theme.FontSmall();
             btnOpenDir.Click += delegate
             {
@@ -208,7 +208,7 @@ namespace JiahaoToolbox.UI
             };
             cardMeta.Controls.Add(btnOpenDir);
 
-            FluentButton btnImportLegacy = FluentFactory.Button("导入旧版效率配置", 140, 64, 134, 30, FluentButtonStyle.Outline);
+            FluentButton btnImportLegacy = FluentFactory.Button("导入旧版效率配置", 140, 70, 134, 30, FluentButtonStyle.Outline);
             btnImportLegacy.Font = Theme.FontSmall();
             btnImportLegacy.Enabled = ToolboxConfig.HasLegacyEcoConfig();
             btnImportLegacy.Click += delegate { if (RequestImportLegacyConfig != null) RequestImportLegacyConfig(); };
@@ -217,7 +217,7 @@ namespace JiahaoToolbox.UI
             bool isAdmin = ElevationHelper.IsAdministrator();
             FluentButton btnElevate = FluentFactory.Button(
                 isAdmin ? "当前已是管理员模式" : "以管理员身份重启",
-                282, 64, 146, 30,
+                282, 70, 152, 30,
                 isAdmin ? FluentButtonStyle.SoftSuccess : FluentButtonStyle.PrimaryBlue);
             btnElevate.Font = Theme.FontSmall();
             btnElevate.Enabled = !isAdmin;
@@ -225,12 +225,12 @@ namespace JiahaoToolbox.UI
             cardMeta.Controls.Add(btnElevate);
 
             _lblStatusTip = new Label();
-            _lblStatusTip.Text = "嘉豪工具箱 v1.0.0 · 原生 .NET 4.8 (x64) 单文件零依赖 · 配置存放在 AppData";
+            _lblStatusTip.Text = "嘉豪工具箱 v1.0.1 · 原生 .NET 4.8 (x64) 单文件零依赖 · 配置存放在 AppData";
             _lblStatusTip.Font = new Font("Microsoft YaHei UI", 8F);
             _lblStatusTip.ForeColor = Theme.TextMuted;
             _lblStatusTip.BackColor = Color.White;
-            _lblStatusTip.Location = new Point(18, 112);
-            _lblStatusTip.Size = new Size(566, 22);
+            _lblStatusTip.Location = new Point(18, 120);
+            _lblStatusTip.Size = new Size(586, 22);
             cardMeta.Controls.Add(_lblStatusTip);
         }
 

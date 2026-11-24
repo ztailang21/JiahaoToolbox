@@ -87,7 +87,7 @@ namespace JiahaoToolbox.UI
             AutoScaleDimensions = new SizeF(96F, 96F);
             BackColor = Theme.ContentBg;
             Font = Theme.FontBody();
-            ClientSize = new Size(840, 580);
+            ClientSize = new Size(860, 650);
 
             try
             {
@@ -101,7 +101,7 @@ namespace JiahaoToolbox.UI
             // 1. Top Header Bar
             _headerPanel = new Panel();
             _headerPanel.Location = new Point(0, 0);
-            _headerPanel.Size = new Size(840, 52);
+            _headerPanel.Size = new Size(860, 52);
             _headerPanel.BackColor = Theme.HeaderBg;
             _headerPanel.Paint += delegate(object s, PaintEventArgs e)
             {
@@ -130,8 +130,8 @@ namespace JiahaoToolbox.UI
 
             bool isAdmin = ElevationHelper.IsAdministrator();
             StatusPill permPill = new StatusPill();
-            permPill.Location = new Point(668, 14);
-            permPill.Size = new Size(106, 24);
+            permPill.Location = new Point(674, 14);
+            permPill.Size = new Size(120, 24);
             permPill.Tone = isAdmin ? StatusTone.Green : StatusTone.Gray;
             permPill.PillText = isAdmin ? "管理员模式" : "普通模式";
             if (!isAdmin)
@@ -142,19 +142,19 @@ namespace JiahaoToolbox.UI
             _headerPanel.Controls.Add(permPill);
 
             Label lblVer = new Label();
-            lblVer.Text = "v1.0";
+            lblVer.Text = "v1.0.1";
             lblVer.Font = Theme.FontSmall();
             lblVer.ForeColor = Theme.TextMuted;
             lblVer.BackColor = Theme.HeaderBg;
             lblVer.TextAlign = ContentAlignment.MiddleRight;
-            lblVer.Location = new Point(778, 16);
+            lblVer.Location = new Point(798, 16);
             lblVer.Size = new Size(44, 20);
             _headerPanel.Controls.Add(lblVer);
 
             // 2. Left Sidebar
             _sidebarPanel = new Panel();
             _sidebarPanel.Location = new Point(0, 52);
-            _sidebarPanel.Size = new Size(186, 528);
+            _sidebarPanel.Size = new Size(186, 598);
             _sidebarPanel.BackColor = Theme.SidebarBg;
             _sidebarPanel.Paint += delegate(object s, PaintEventArgs e)
             {
@@ -168,14 +168,14 @@ namespace JiahaoToolbox.UI
             _navOverview = CreateNavItem("总览", "overview", NavIconKind.Overview, 16);
             _navEco = CreateNavItem("效率管理", "eco", NavIconKind.Leaf, 60);
             _navGuard = CreateNavItem("防护与更新", "guard", NavIconKind.Shield, 104);
-            _navSettings = CreateNavItem("通用设置", "settings", NavIconKind.Settings, 474);
+            _navSettings = CreateNavItem("通用设置", "settings", NavIconKind.Settings, 544);
 
             _navItems = new SidebarNavItem[] { _navOverview, _navEco, _navGuard, _navSettings };
 
             // 3. Right Content Host
             _contentHost = new Panel();
             _contentHost.Location = new Point(186, 52);
-            _contentHost.Size = new Size(654, 528);
+            _contentHost.Size = new Size(674, 598);
             _contentHost.BackColor = Theme.ContentBg;
             Controls.Add(_contentHost);
         }
@@ -501,8 +501,27 @@ namespace JiahaoToolbox.UI
         {
             _allowExit = true;
             if (_ecoPollTimer != null) _ecoPollTimer.Stop();
-            if (_trayIcon != null) _trayIcon.Visible = false;
-            Close();
+            if (_trayIcon != null)
+            {
+                _trayIcon.Visible = false;
+                _trayIcon.Dispose();
+                _trayIcon = null;
+            }
+            if (_releaseSingleInstanceMutex != null)
+            {
+                try { _releaseSingleInstanceMutex(); } catch { }
+            }
+            try { Close(); } catch { }
+            Application.Exit();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            if (_allowExit && !_readOnlyPreviewMode)
+            {
+                Environment.Exit(0);
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
